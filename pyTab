@@ -6,16 +6,16 @@ import tableauserverclient as TSC
 
 # Create a new Tableau Server authentication object
 # Need to verify what my username and password are
-auth = TSC.TableauAuth('username', 'password')
+auth = TSC.TableauAuth('bryants2', 'EliteBook5')
 
 # Create a new Tableau Server object
 #https://tabnala.roche.com
-server = TSC.Server('http://your-tableau-server-url')
+server = TSC.Server(r'https://tabnala.roche.com')
 
 # Specify the workbook and view IDs
 #Are ID's the same as the names or are there different tokens/ids/names etc.
-workbook_id = 'your-workbook-id'
-view_id = 'your-view-id'
+workbook_id = 'DOD_Project'
+view_id = 'GovSold_Ship'
 
 with server.auth.sign_in(auth):
     # Get the workbook and view
