@@ -1,4 +1,6 @@
 #don't forget to install the tableauserverclient package using pip install tableauserverclient
+#using pip install tableauserverclient==0.14.0
+#This is a simple script to download a view from Tableau Server as a CSV file
 
 import tableauserverclient as TSC
 
