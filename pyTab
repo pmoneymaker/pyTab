@@ -1,0 +1,34 @@
+#don't forget to install the tableauserverclient package using pip install tableauserverclient
+
+import tableauserverclient as TSC
+
+# Create a new Tableau Server authentication object
+# Need to verify what my username and password are
+auth = TSC.TableauAuth('username', 'password')
+
+# Create a new Tableau Server object
+#https://tabnala.roche.com
+server = TSC.Server('http://your-tableau-server-url')
+
+# Specify the workbook and view IDs
+#Are ID's the same as the names or are there different tokens/ids/names etc.
+workbook_id = 'your-workbook-id'
+view_id = 'your-view-id'
+
+with server.auth.sign_in(auth):
+    # Get the workbook and view
+    workbook = server.workbooks.get_by_id(workbook_id)
+    view = [v for v in server.views.get() if v.id == view_id][0]
+
+    # Download the view as a CSV file
+    server.views.populate_csv(view)
+    with open('output.csv', 'wb') as f:
+        f.write(view.csv)
+
+print('CSV file downloaded successfully.')
+
+
+#The belwo is if you want to use a personal access token
+#token_name = 'your-token-name'
+#personal_access_token = 'your-personal-access-token'
+#auth = TSC.PersonalAccessTokenAuth(token_name, personal_access_token)
